@@ -11,6 +11,7 @@
 let num1 = '';
 let sign = '';
 let actualNum;
+let displayValue = ''
 const container = document.querySelector('#container');
 const buttons = document.querySelectorAll('button');
 const oppBtn = document.querySelectorAll('[data-opp]');
@@ -47,6 +48,9 @@ function setOp(operator) {
     firstOp = actualNum;
     sign = operator;
     currentStep = `${firstOp} ${sign}`
+    display.textContent = "";
+    display.textContent = currentStep;    
+    
     console.log('setOp function works: ' + currentStep);
     num1 = '';
 }
@@ -83,29 +87,38 @@ function evaluate() {
         display.textContent = "Equation: " + `${firstOp} ${sign} ${actualNum}`;
         final.textContent = sum;
         finished = sum;
-        console.log('final: ' + sum);
+        console.log('final: ' + finished);
+        actualNum = finished;
     }
     
     function subtract(num1,num2) {
         let sub = num1 - num2;
         display.textContent = `${firstOp} ${sign} ${actualNum}`
         final.textContent = sub;
+        finished = sub;
         console.log('final: ' + sub);
+        actualNum = finished;
     }
     
     function multiply(num1,num2) {
         let mult = num1 * num2;
         display.textContent = "Equation: " + `${firstOp} ${sign} ${actualNum}`;        
         final.textContent = mult;
+        finished = mult;
         console.log('final: ' + mult);
+        actualNum = finished;
+        
     }
     
     function divide(num1,num2) {
         if (actualNum != 0) {
         let divide = num1/num2
+        let round = Math.round(divide);
         display.textContent = "Equation: " + `${firstOp} ${sign} ${actualNum}`;        
         console.log('final: ' + divide);
-        final.textContent = divide;
+        final.textContent = round;
+        finished = divide;
+        actualNum = finished;
         } else {
             display.textContent = "Oops, cannot divide by 0";
         }
