@@ -10,10 +10,12 @@
 //begin button scanning vales
 let num1 = '';
 let sign = '';
+let actualNum;
 const container = document.querySelector('#container');
 const buttons = document.querySelectorAll('button');
 const oppBtn = document.querySelectorAll('[data-opp]');
 const result = document.querySelectorAll('[data-equal]');
+const numBtn = document.querySelectorAll('[data-number]');
 
 oppBtn.forEach((button) => {
  button.addEventListener('click', () => setOp(button.textContent))
@@ -25,7 +27,7 @@ result.forEach((button) => {
 
 
 
-buttons.forEach((button) => {
+numBtn.forEach((button) => {
         button.addEventListener('click', () => {
         num1 = num1 + button.textContent;
         display.textContent = "";
@@ -47,8 +49,14 @@ function setOp(operator) {
 
 function evaluate() {
     secondOp = actualNum;
-    if (sign = '+') {
+    if (sign === '+') {
         add(firstOp,actualNum)
+    }
+    if (sign === '-') {
+        subtract(firstOp,actualNum)
+    }
+    if (sign === '*') {
+        multiply(firstOp,actualNum);
     }
     console.log('Equation: ' + `${firstOp} ${sign} ${actualNum}`);
     
@@ -64,26 +72,27 @@ function evaluate() {
 
 
     function add(num1,num2) { 
-        //alert(num1 + num2);
         let sum = num1 + num2;
-        display.textContent = "";
+        display.textContent = "Equation: " + `${firstOp} ${sign} ${actualNum}`;
         final.textContent = sum;
         console.log('final: ' + sum);
     }
     
     function subtract(num1,num2) {
-        alert(num1 - num2);
+        let sub = num1 - num2;
+        display.textContent = `${firstOp} ${sign} ${actualNum}`
+        final.textContent = sub;
+        console.log('final: ' + sub);
     }
     
     function multiply(num1,num2) {
-        alert(num1 * num2);
+        let mult = num1 * num2;
+        display.textContent = "Equation: " + `${firstOp} ${sign} ${actualNum}`;        final.textContent = mult;
+        console.log('final: ' + mult);
     }
     
     function divide(num1,num2) {
-        alert(num1 / num2);
+        let divide = num1/num2
+        display.textContent = "Equation: " + `${firstOp} ${sign} ${actualNum}`;        final.textContent = mult;
+        console.log('final: ' + divide);
     }
-    
-    function choice() {
-        sign = "on";
-    }
-    
